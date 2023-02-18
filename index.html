@@ -43,7 +43,7 @@
         justify-items: end;
         align-items: center;
         perspective: 1200px;
-        perspective-origin: 80% 50%;
+        perspective-origin: 80% 20%;
         transition: 3s;
       }
       #open {
@@ -181,11 +181,11 @@
           <div class="circle"></div>
         </div>
         <div id="up-inner">
-          <img src="some.svg" alt="some" />
+          <img src="some.png" alt="some" />
           <time>20:45</time>
         </div>
         <div id="down">
-          <img src="some.svg" alt="some" />
+          <img src="some.png" alt="some" />
         </div>
       </div>
     </div>
@@ -202,9 +202,6 @@
         open.addEventListener("click", function () {
           music.volume = 0.7;
           music.play();
-
-          container.style.perspectiveOrigin = "80% 20%";
-
           upCover.style.transform = "rotateX(30deg) translateX(-25vw)";
           upInner.style.transform = "rotateX(208deg) translateX(-25vw)";
           setTimeout(function () {
@@ -213,11 +210,9 @@
         });
         close.addEventListener("click", function () {
           music.pause();
-
           container.style.animation = "none";
           upCover.style.transform = "rotateX(-110deg) translateX(-25vw)";
           upInner.style.transform = "rotateX(70deg) translateX(-25vw)";
-          container.style.perspectiveOrigin = "80% 50%";
         });
       });
     </script>
