@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <title>Flip and flip</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Dancing Script", cursive;
+      }
+      body {
+        position: relative;
+        min-height: 100vh;
+        background-image: linear-gradient(
+          30deg,
+          rgb(59, 250, 186),
+          rgb(3, 126, 83)
+        );
+        background-size: 200%;
+        background-position: bottom right;
+        animation: bgMove 6s ease-in-out infinite alternate;
+      }
+      @keyframes bgMove {
+        to {
+          background-position: top left;
+        }
+      }
+      #container {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        justify-items: end;
+        align-items: center;
+        perspective: 1200px;
+        perspective-origin: 80% 50%;
+        transition: 3s;
+      }
+      #open {
+        position: absolute;
+        left: 3vw;
+        top: 65vh;
+        background-color: transparent;
+        border: none;
+        font-size: 3vw;
+        color: rgb(231, 247, 241);
+        text-shadow: 1px -1px 5px rgb(231, 247, 241);
+        cursor: pointer;
+        letter-spacing: 0.2vw;
+        transition: 0.5s;
+      }
+      #open:hover {
+        text-shadow: none;
+        scale: 1.05;
+        letter-spacing: 0.3vw;
+      }
+
+      #close {
+        position: absolute;
+        left: 3vw;
+        top: 75vh;
+        font-size: 3vw;
+        border: none;
+        background-color: transparent;
+        color: rgb(231, 247, 241);
+        text-shadow: 1px -1px 5px rgb(231, 247, 241);
+        cursor: pointer;
+        letter-spacing: 0.3vw;
+        transition: 0.5s;
+      }
+      #close:hover {
+        text-shadow: none;
+        scale: 1.05;
+        letter-spacing: 0.5vw;
+      }
+
+      #all {
+        position: relative;
+        transform-style: preserve-3d;
+      }
+      #up-cover {
+        transform: rotateX(-110deg) translateX(-25vw);
+        transform-origin: 50% 100%;
+
+        width: 20vw;
+        height: 50vh;
+        border: 10px solid black;
+        transition: 3s;
+        border-radius: 40px;
+        background-image: linear-gradient(
+          57deg,
+          rgb(247, 242, 177),
+          rgb(255, 255, 255)
+        );
+      }
+      #up-cover .circle {
+        position: absolute;
+        left: 80%;
+        top: 2%;
+        width: 2vmax;
+        height: 2vmax;
+        border-radius: 50%;
+        box-shadow: 0 0 1px 1px rgb(80, 80, 80);
+        margin: 0.5vmax;
+        background-image: radial-gradient(
+          rgb(80, 80, 80),
+          rgb(48, 48, 48),
+          rgb(15, 15, 15)
+        );
+      }
+
+      #up-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-image: linear-gradient(15deg, rgb(24, 24, 24), rgb(5, 5, 5));
+        padding: 0.5vmax;
+        width: 20vw;
+        height: 50vh;
+        transition: 3s;
+        border: 10px solid black;
+        transform: rotateX(70deg) translateX(-25vw);
+        transform-origin: 50% 0%;
+        border-radius: 40px;
+      }
+      #down {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-image: linear-gradient(15deg, rgb(24, 24, 24), rgb(5, 5, 5));
+        padding: 0.5vmax;
+        width: 20vw;
+        height: 50vh;
+        border: 10px solid black;
+        transform: rotateX(70deg) translateX(-25vw) translateY(-170px)
+          translateZ(458px);
+        transform-origin: 50% 0%;
+        border-radius: 40px;
+      }
+      #down img {
+        filter: blur(1px) drop-shadow(0 0 3px rgb(230, 155, 109));
+      }
+      #up-inner time {
+        position: absolute;
+        font-size: 5vw;
+        color: rgb(255, 250, 236);
+        left: 20%;
+        top: 65%;
+        text-shadow: 0 0 5px rgb(255, 250, 236);
+        transform: rotateZ(180deg) rotateY(180deg);
+      }
+      #up-inner img {
+        filter: blur(1px) drop-shadow(0 0 3px rgb(230, 155, 109));
+      }
+      @keyframes round {
+        0%,
+        100% {
+          perspective-origin: 80% 20%;
+        }
+
+        50% {
+          perspective-origin: 35% 20%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="all">
+        <div id="up-cover">
+          <div class="circle"></div>
+        </div>
+        <div id="up-inner">
+          <img src="/some.svg" alt="" />
+          <time>20:45</time>
+        </div>
+        <div id="down">
+          <img src="/some.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <button id="open">open</button>
+    <button id="close">close</button>
+    <script>
+      window.addEventListener("load", function () {
+        const music = new Audio("ambient.mp3");
+        const open = document.getElementById("open");
+        const close = document.getElementById("close");
+        let container = document.getElementById("container");
+        let upInner = document.getElementById("up-inner");
+        let upCover = document.getElementById("up-cover");
+        open.addEventListener("click", function () {
+          music.volume = 0.7;
+          music.play();
+
+          container.style.perspectiveOrigin = "80% 20%";
+
+          upCover.style.transform = "rotateX(30deg) translateX(-25vw)";
+          upInner.style.transform = "rotateX(208deg) translateX(-25vw)";
+          setTimeout(function () {
+            container.style.animation = "round 10s linear infinite";
+          }, 4000);
+        });
+        close.addEventListener("click", function () {
+          music.pause();
+
+          container.style.perspectiveOrigin = "80% 50%";
+
+          container.style.animation = "none";
+          upCover.style.transform = "rotateX(-110deg) translateX(-25vw)";
+          upInner.style.transform = "rotateX(70deg) translateX(-25vw)";
+        });
+      });
+    </script>
+  </body>
+</html>
