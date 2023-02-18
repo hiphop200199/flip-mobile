@@ -196,7 +196,10 @@
           }, 3500);
         });
         close.addEventListener("click", function () {
-          music.pause();
+          setTimeout(function () {
+            music.pause();
+          }, 3500);
+
           container.style.animationPlayState = "paused";
           upInner.style.zIndex = "1";
           upCover.style.transform = "rotateX(-110deg) translateX(-25vw)";
