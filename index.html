@@ -46,7 +46,7 @@
         transform-style: preserve-3d;
       }
       #open {
-        top: 65vh;
+        top: 60vh;
       }
       #open:hover,
       #close:hover {
@@ -60,7 +60,7 @@
         left: 3vw;
         background-color: transparent;
         border: none;
-        font-size: 3vw;
+        font-size: 5vw;
         color: rgb(231, 247, 241);
         text-shadow: 1px -1px 5px rgb(231, 247, 241);
         cursor: pointer;
@@ -70,7 +70,7 @@
         height: fit-content;
       }
       #close {
-        top: 75vh;
+        top: 80vh;
       }
       #up-cover,
       #up-inner,
@@ -80,7 +80,8 @@
         border-radius: 3vmax;
         width: 25vw;
         height: 50vh;
-        border: 1.3vmax solid black;
+
+        border: 1vmax groove rgba(192, 192, 192, 0.8);
         transition: 3s;
         transform: rotateX(-110deg) translateX(-25vw);
         transform-origin: 50% 100%;
@@ -96,7 +97,7 @@
         z-index: 2;
         background-image: linear-gradient(
           57deg,
-          rgb(247, 242, 177),
+          rgb(236, 231, 162),
           rgb(255, 255, 255)
         );
       }
@@ -107,7 +108,8 @@
         width: 2vmax;
         height: 2vmax;
         border-radius: 50%;
-        box-shadow: 0 0 1px 1px rgb(80, 80, 80);
+        border: 0.12vmax groove rgba(192, 192, 192, 0.8);
+
         margin: 1vmax;
         background-image: radial-gradient(
           rgb(80, 80, 80),
