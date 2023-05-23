@@ -10,176 +10,14 @@
       href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/ad41f6c00f.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <title>Flip and flip</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: "Dancing Script", cursive;
-      }
-      body {
-        position: relative;
-        min-height: 100vh;
-        width: 100vw;
-        background-image: linear-gradient(
-          30deg,
-          rgb(59, 250, 186),
-          rgb(3, 126, 83)
-        );
-        background-size: 200%;
-        background-position: bottom right;
-        animation: bgMove 6s ease-in-out infinite alternate;
-      }
-
-      #container {
-        position: relative;
-        width: 100%;
-        min-height: 100vh;
-        display: grid;
-        justify-items: end;
-        align-items: center;
-        perspective: 1200px;
-        perspective-origin: 80% 20%;
-        transition: 3s;
-        transform-style: preserve-3d;
-      }
-      #open {
-        top: 60vh;
-      }
-      #open:hover,
-      #close:hover {
-        text-shadow: none;
-        scale: 1.05;
-        letter-spacing: 0.3vw;
-      }
-      #open,
-      #close {
-        position: absolute;
-        left: 3vw;
-        background-color: transparent;
-        border: none;
-        font-size: 5vw;
-        color: rgb(231, 247, 241);
-        text-shadow: 1px -1px 5px rgb(231, 247, 241);
-        cursor: pointer;
-        letter-spacing: 0.2vw;
-        transition: 0.5s;
-        width: fit-content;
-        height: fit-content;
-      }
-      #close {
-        top: 80vh;
-      }
-      #up-cover,
-      #up-inner,
-      #down {
-        top: 0%;
-        position: absolute;
-        border-radius: 3vmax;
-        width: 25vw;
-        height: 50vh;
-
-        border: 1vmax groove rgba(192, 192, 192, 0.8);
-        transition: 3s;
-        transform: rotateX(-110deg) translateX(-25vw);
-        transform-origin: 50% 100%;
-      }
-      #up-inner,
-      #down {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0.5vmax;
-      }
-      #up-cover {
-        z-index: 2;
-        background-image: linear-gradient(
-          57deg,
-          rgb(236, 231, 162),
-          rgb(255, 255, 255)
-        );
-      }
-      #up-cover .circle {
-        position: absolute;
-        right: 0%;
-        top: 2%;
-        width: 2vmax;
-        height: 2vmax;
-        border-radius: 50%;
-        border: 0.12vmax groove rgba(192, 192, 192, 0.8);
-
-        margin: 1vmax;
-        background-image: radial-gradient(
-          rgb(80, 80, 80),
-          rgb(48, 48, 48),
-          rgb(15, 15, 15)
-        );
-      }
-
-      #up-inner {
-        justify-content: space-evenly;
-        background-image: linear-gradient(15deg, rgb(15, 15, 15), rgb(5, 5, 5));
-        z-index: 1;
-      }
-      #down {
-        justify-content: center;
-        background-image: linear-gradient(25deg, rgb(8, 8, 8), rgb(2, 2, 2));
-      }
-      #down img,
-      #up-inner img {
-        filter: blur(1px) drop-shadow(0 0 4px rgb(230, 155, 109));
-        width: 60%;
-      }
-      #down img {
-        height: 90%;
-      }
-      #up-inner time {
-        position: absolute;
-        font-size: 5vw;
-        color: rgb(255, 250, 236);
-        top: 15%;
-        text-shadow: 0 0 5px rgb(255, 250, 236);
-      }
-      #up-inner img {
-        height: 80%;
-      }
-      @keyframes bgMove {
-        to {
-          background-position: top left;
-        }
-      }
-      @keyframes round {
-        0%,
-        100% {
-          perspective-origin: 80% 20%;
-        }
-
-        50% {
-          perspective-origin: 35% 20%;
-        }
-      }
-      @media screen and (orientation: portrait) {
-        #up-cover,
-        #up-inner,
-        #down {
-          width: 45vw;
-          height: 45vh;
-        }
-        #open,
-        #close {
-          top: 85%;
-          font-size: 10vw;
-        }
-        #open {
-          left: 20%;
-        }
-        #close {
-          left: 60%;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Flip</title>
   </head>
   <body>
     <div id="container">
@@ -188,46 +26,25 @@
       </div>
       <div id="up-inner">
         <img src="some.png" alt="some" />
-        <time>20:45</time>
+        <section></section>
       </div>
       <div id="down">
-        <img src="some.png" alt="some" />
+        <section>
+          <button id="home">&#127968;</button>
+          <button id="off">&#128244;</button>
+        </section>
+        <menu>
+          <button id="time">&#128357;</button>
+          <button id="weather">&#9925;</button>
+          <button id="joke">&#129315;</button>
+          <button id="exchange">&#128178;</button>
+          <button id="calculator">&#128425;</button>
+          <button id="music">&#9835;</button>
+          <button id="note">&#10000;</button>
+          <button id="air-quality">&#127745;</button>
+          <button id="calories">&#9977;</button>
+        </menu>
       </div>
     </div>
-    <button id="open">open</button>
-    <button id="close">close</button>
-    <script>
-      window.addEventListener("load", function () {
-        const music = new Audio("ambient.mp3");
-        const open = document.getElementById("open");
-        const close = document.getElementById("close");
-        let container = document.getElementById("container");
-        let upInner = document.getElementById("up-inner");
-        let upCover = document.getElementById("up-cover");
-        open.addEventListener("click", function () {
-          music.loop = true;
-          music.volume = 0.7;
-          music.play();
-          upCover.style.transform = "rotateX(15deg) translateX(-25vw)";
-          upInner.style.transform = "rotateX(15deg) translateX(-25vw)";
-
-          upInner.style.zIndex = "3";
-
-          setTimeout(function () {
-            container.style.animation = "round 10s linear infinite";
-          }, 3500);
-        });
-        close.addEventListener("click", function () {
-          setTimeout(function () {
-            music.pause();
-          }, 3500);
-
-          container.style.animationPlayState = "paused";
-          upInner.style.zIndex = "1";
-          upCover.style.transform = "rotateX(-110deg) translateX(-25vw)";
-          upInner.style.transform = "rotateX(-110deg) translateX(-25vw)";
-        });
-      });
-    </script>
   </body>
 </html>

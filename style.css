@@ -1,0 +1,152 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Dancing Script", cursive;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(30deg, rgb(59, 250, 186), rgb(3, 126, 83));
+  background-size: 200%;
+  background-position: bottom right;
+  animation: bgMove 6s ease-in-out infinite alternate;
+}
+body #container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  justify-items: end;
+  align-items: center;
+  perspective: 1200px;
+  perspective-origin: 35% 20%;
+  transition: 1s;
+  transform-style: preserve-3d;
+}
+body #container #up-cover,
+body #container #up-inner,
+body #container #down {
+  top: 0%;
+  position: absolute;
+  border-radius: 3vmax;
+  width: 50vw;
+  height: 50vh;
+  border: 1vmax groove rgba(192, 192, 192, 0.8);
+  transition: 1s;
+  transform: rotateX(-110deg) translateX(-25vw);
+  transform-origin: 50% 100%;
+}
+body #container #up-inner,
+body #container #down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5vmax;
+}
+body #container #up-inner img {
+  filter: blur(1px) drop-shadow(0 0 4px rgb(230, 155, 109));
+  width: 60%;
+}
+body #container #up-cover {
+  z-index: 2;
+  background-image: linear-gradient(57deg, rgb(236, 231, 162), rgb(255, 255, 255));
+}
+body #container #up-cover .circle {
+  position: absolute;
+  right: 0%;
+  top: 2%;
+  width: 2vmax;
+  height: 2vmax;
+  border-radius: 50%;
+  border: 0.12vmax groove rgba(192, 192, 192, 0.8);
+  margin: 1vmax;
+  background-image: radial-gradient(rgb(80, 80, 80), rgb(48, 48, 48), rgb(15, 15, 15));
+}
+body #container #up-inner {
+  justify-content: space-evenly;
+  background-image: linear-gradient(15deg, rgb(15, 15, 15), rgb(5, 5, 5));
+  z-index: 1;
+}
+body #container #up-inner img {
+  height: 80%;
+}
+body #container #down {
+  justify-content: space-around;
+  background-image: linear-gradient(25deg, rgb(8, 8, 8), rgb(2, 2, 2));
+}
+body #container #down menu {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px 10px;
+  transform: rotateX(0.5turn);
+}
+body #container #down menu button {
+  background-color: transparent;
+  font-size: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  animation: none;
+}
+body #container #down menu button:hover {
+  animation: updown 0.6s linear infinite;
+}
+body #container #down menu #calculator {
+  color: rgb(190, 190, 190);
+}
+body #container #down menu #music {
+  color: rgb(255, 115, 49);
+}
+body #container #down menu #note {
+  color: rgb(236, 231, 162);
+}
+body #container #down section {
+  margin: 20px;
+}
+body #container #down section #home, body #container #down section #off {
+  margin: 20px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  padding: 5px;
+  background-color: transparent;
+  font-size: 30px;
+  font-weight: 600;
+  transform: rotateX(0.5turn);
+  cursor: pointer;
+}
+
+@keyframes bgMove {
+  to {
+    background-position: top left;
+  }
+}
+@keyframes updown {
+  from {
+    transform: translateY(0vh);
+  }
+  25% {
+    transform: translateY(-0.5vh);
+  }
+  50% {
+    transform: translateY(0vh);
+  }
+  75% {
+    transform: translateY(0.5vh);
+  }
+  to {
+    transform: translateY(0vh);
+  }
+}
+@media screen and (orientation: portrait) {
+  #up-cover,
+  #up-inner,
+  #down {
+    width: 45vw;
+    height: 45vh;
+  }
+}/*# sourceMappingURL=style.css.map */
