@@ -2,13 +2,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Dancing Script", cursive;
 }
 
 body {
   position: relative;
-  min-height: 100vh;
-  width: 100vw;
   background-image: linear-gradient(30deg, rgb(59, 250, 186), rgb(3, 126, 83));
   background-size: 200%;
   background-position: bottom right;
@@ -16,14 +13,13 @@ body {
 }
 body #container {
   position: relative;
-  width: 100%;
   min-height: 100vh;
   display: grid;
   justify-items: end;
   align-items: center;
   perspective: 1200px;
   perspective-origin: 35% 20%;
-  transition: 1s;
+  transition: 0.7s;
   transform-style: preserve-3d;
 }
 body #container #up-cover,
@@ -35,7 +31,7 @@ body #container #down {
   width: 50vw;
   height: 50vh;
   border: 1vmax groove rgba(192, 192, 192, 0.8);
-  transition: 1s;
+  transition: 0.7s;
   transform: rotateX(-110deg) translateX(-25vw);
   transform-origin: 50% 100%;
 }
@@ -67,11 +63,38 @@ body #container #up-cover .circle {
 }
 body #container #up-inner {
   justify-content: space-evenly;
-  background-image: linear-gradient(15deg, rgb(15, 15, 15), rgb(5, 5, 5));
+  background-color: black;
   z-index: 1;
 }
 body #container #up-inner img {
   height: 80%;
+}
+body #container #up-inner #calories-display {
+  display: none;
+  overflow-y: scroll;
+}
+body #container #up-inner #time-display {
+  display: none;
+}
+body #container #up-inner #time-display #time-content {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+}
+body #container #up-inner #music-display {
+  display: none;
+}
+body #container #up-inner #music-display img {
+  width: 50px;
+  height: 50px;
+}
+body #container #up-inner #joke-display {
+  display: none;
+}
+body #container #up-inner #joke-display #joke-content {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
 }
 body #container #down {
   justify-content: space-around;
@@ -83,6 +106,7 @@ body #container #down menu {
   grid-template-columns: repeat(3, 1fr);
   gap: 25px 10px;
   transform: rotateX(0.5turn);
+  transition: 0.7s;
 }
 body #container #down menu button {
   background-color: transparent;
@@ -118,6 +142,58 @@ body #container #down section #home, body #container #down section #off {
   font-weight: 600;
   transform: rotateX(0.5turn);
   cursor: pointer;
+}
+body #container #down #play-and-pause {
+  display: none;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  padding: 20px;
+  transition: 0.4s;
+}
+body #container #down #play-and-pause:hover {
+  scale: 1.1;
+}
+body #container #down #play-and-pause img {
+  width: 50px;
+  height: 50px;
+}
+body #container #down #generate-joke {
+  display: none;
+  border-radius: 10px;
+  padding: 5px 8px;
+  border: none;
+  box-shadow: 2px 2px 4px 2px white;
+  background: none;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transform: rotateX(0.5turn);
+  transition: 0.4s;
+}
+body #container #down #generate-joke:hover {
+  scale: 1.1;
+}
+body #container #down #calories-form {
+  height: 60%;
+  display: none;
+  transform: rotateX(0.5turn);
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+body #container #down #calories-form button {
+  cursor: pointer;
+  padding: 5px 8px;
+  background: none;
+  color: white;
+  border: 2px solid white;
+  transition: 0.4s;
+}
+body #container #down #calories-form button:hover {
+  scale: 1.1;
 }
 
 @keyframes bgMove {

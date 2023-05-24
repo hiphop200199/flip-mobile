@@ -4,16 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/ad41f6c00f.js"
-      crossorigin="anonymous"
-    ></script>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
@@ -25,8 +15,17 @@
         <div class="circle"></div>
       </div>
       <div id="up-inner">
-        <img src="some.png" alt="some" />
-        <section></section>
+        <img src="/images/some.png" alt="some" />
+        <section id="music-display">
+          <img src="images/piano.png" alt="piano" />
+        </section>
+        <section id="joke-display">
+          <p id="joke-content"></p>
+        </section>
+        <section id="time-display">
+          <p id="time-content"></p>
+        </section>
+        <section id="calories-display"></section>
       </div>
       <div id="down">
         <section>
@@ -44,6 +43,36 @@
           <button id="air-quality">&#127745;</button>
           <button id="calories">&#9977;</button>
         </menu>
+        <button id="generate-joke">generateJoke</button>
+        <button id="play-and-pause">
+          <img src="images/play.png" alt="music-icon" />
+        </button>
+        <section id="calories-form">
+          <input
+            class="calories-inputs"
+            type="text"
+            id="activity"
+            placeholder="activity"
+            required
+          />
+          <input
+            class="calories-inputs"
+            type="number"
+            min="1"
+            id="weight"
+            placeholder="weight(kg)"
+            required
+          />
+          <input
+            class="calories-inputs"
+            type="number"
+            id="minutes"
+            min="1"
+            placeholder="minutes"
+            required
+          />
+          <button id="send">send</button>
+        </section>
       </div>
     </div>
   </body>

@@ -1,13 +1,15 @@
+  @mixin textContent(){
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+  }
   * {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: "Dancing Script", cursive;
       }
     body {
        position: relative;
-      min-height: 100vh;
-       width: 100vw;
        background-image: linear-gradient(
          30deg,
          rgb(59, 250, 186),
@@ -18,14 +20,13 @@
        animation: bgMove 6s ease-in-out infinite alternate;
        #container {
         position: relative;
-        width: 100%;
         min-height: 100vh;
         display: grid;
         justify-items: end;
         align-items: center;
         perspective: 1200px;
         perspective-origin: 35% 20%;
-        transition: 1s;
+        transition: 0.7s;
         transform-style: preserve-3d;
         #up-cover,
         #up-inner,
@@ -37,7 +38,7 @@
           height: 50vh;
   
           border: 1vmax groove rgba(192, 192, 192, 0.8);
-          transition: 1s;
+          transition:0.7s;
           transform: rotateX(-110deg) translateX(-25vw);
           transform-origin: 50% 100%;
         }
@@ -79,10 +80,33 @@
           }
           #up-inner {
             justify-content: space-evenly;
-            background-image: linear-gradient(15deg, rgb(15, 15, 15), rgb(5, 5, 5));
+            background-color: black;
             z-index: 1;
                  img {
                      height: 80%;
+              }
+              #calories-display{
+                display: none;
+                overflow-y: scroll;
+              }
+              #time-display{
+                display: none;
+                #time-content{
+                @include textContent();
+                }
+              }
+              #music-display{
+                display: none;
+                img{
+                  width: 50px;
+                  height: 50px;
+                }
+              }
+              #joke-display{
+                display: none;
+                #joke-content{
+            @include textContent();
+                }
               }
           }
           #down {
@@ -94,6 +118,7 @@
               grid-template-columns: repeat(3,1fr);
               gap: 25px 10px;
               transform: rotateX(0.5turn);
+             transition: 0.7s;
               button{
                 background-color: transparent;
                 font-size: 40px;
@@ -130,7 +155,58 @@
                 cursor: pointer;
               }
             }
-         
+            #play-and-pause{
+              display: none;
+              cursor: pointer;
+              border: none;
+              background-color: white;
+              border-radius: 50%;
+              padding: 20px;
+              transition: 0.4s;
+              &:hover{
+                scale: 1.1;
+              }
+              img{
+                width: 50px;
+                height: 50px;
+              }
+            }
+            #generate-joke{
+              display: none;
+              border-radius: 10px;
+              padding: 5px 8px;
+              border: none;
+              box-shadow: 2px 2px 4px 2px white;
+              background: none;
+              color: white;
+              font-size: 25px;
+              font-weight: 600;
+              cursor: pointer;
+              transform: rotateX(0.5turn);
+              transition: 0.4s;
+              &:hover{
+                scale: 1.1;
+              }
+            }
+            #calories-form{
+              height: 60%;
+              display: none;
+              transform: rotateX(0.5turn);
+              flex-direction: column;
+              justify-content: space-evenly;
+              align-items: center;
+              button{
+                cursor: pointer;
+                padding: 5px 8px;
+                background: none;
+                color: white;
+                border: 2px solid white;
+                transition: 0.4s;
+              &:hover{
+                scale: 1.1;
+              }
+              }
+            }
           }
       }
     }
