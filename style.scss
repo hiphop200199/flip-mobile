@@ -22,7 +22,7 @@
         position: relative;
         min-height: 100vh;
         display: grid;
-        justify-items: end;
+        justify-items: center;
         align-items: center;
         perspective: 1200px;
         perspective-origin: 35% 20%;
@@ -36,10 +36,10 @@
           border-radius: 3vmax;
           width: 50vw;
           height: 50vh;
-  
+          max-width: 500px;
           border: 1vmax groove rgba(192, 192, 192, 0.8);
           transition:0.7s;
-          transform: rotateX(-110deg) translateX(-25vw);
+          transform: rotateX(-110deg);
           transform-origin: 50% 100%;
         }
         #up-inner,
@@ -85,9 +85,28 @@
                  img {
                      height: 80%;
               }
+              #dictionary-display{
+                display: none;
+                overflow-y: scroll;
+              }
+              #chat-display{
+                display: none;
+                padding: 20px;
+                overflow-y: scroll;
+              }
+              #translate-display{
+                display: none;
+                overflow-y: scroll;
+              }
+              #currency-display{
+                display: none;
+              }
               #calories-display{
                 display: none;
                 overflow-y: scroll;
+              }
+              #weather-display{
+                display: none;
               }
               #time-display{
                 display: none;
@@ -131,7 +150,7 @@
                   animation: updown 0.6s linear infinite ;
                 }
               }
-              #calculator{
+              #translate{
                 color: rgb(190, 190, 190);
               }
               #music{
@@ -206,6 +225,19 @@
                 scale: 1.1;
               }
               }
+            }
+            #currency-form{
+              @extend #calories-form;
+            }
+            #dictionary-form{
+              @extend #calories-form;
+              
+            }
+            #translate-form{
+              @extend #dictionary-form;
+            }
+            #chat-form{
+              @extend #translate-form;
             }
           }
       }

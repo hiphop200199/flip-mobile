@@ -26,6 +26,11 @@
           <p id="time-content"></p>
         </section>
         <section id="calories-display"></section>
+        <section id="currency-display"></section>
+        <section id="dictionary-display"></section>
+        <section id="translate-display"></section>
+        <section id="weather-display"></section>
+        <section id="chat-display"></section>
       </div>
       <div id="down">
         <section>
@@ -37,10 +42,10 @@
           <button id="weather">&#9925;</button>
           <button id="joke">&#129315;</button>
           <button id="exchange">&#128178;</button>
-          <button id="calculator">&#128425;</button>
+          <button id="translate">&#11138;</button>
           <button id="music">&#9835;</button>
-          <button id="note">&#10000;</button>
-          <button id="air-quality">&#127745;</button>
+          <button id="chat">🧑‍🤝‍🧑</button>
+          <button id="dictionary">&#128218;</button>
           <button id="calories">&#9977;</button>
         </menu>
         <button id="generate-joke">generateJoke</button>
@@ -72,6 +77,35 @@
             required
           />
           <button id="send">send</button>
+        </section>
+        <section id="currency-form">
+          <input
+            class="currency-inputs"
+            type="text"
+            id="from"
+            placeholder="from"
+          />
+          <input class="currency-inputs" type="text" id="to" placeholder="to" />
+          <input
+            class="currency-inputs"
+            type="number"
+            id="amount"
+            placeholder="amount"
+            min="0"
+          />
+          <button id="get-currency">send</button>
+        </section>
+        <section id="dictionary-form">
+          <input type="text" id="word" placeholder="..." />
+          <button id="search">send</button>
+        </section>
+        <section id="translate-form">
+          <input type="text" id="english" placeholder="..." />
+          <button id="get-translation">send</button>
+        </section>
+        <section id="chat-form">
+          <input type="text" id="you-said" placeholder="..." />
+          <button id="to-chat">send</button>
         </section>
       </div>
     </div>

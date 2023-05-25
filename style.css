@@ -15,7 +15,7 @@ body #container {
   position: relative;
   min-height: 100vh;
   display: grid;
-  justify-items: end;
+  justify-items: center;
   align-items: center;
   perspective: 1200px;
   perspective-origin: 35% 20%;
@@ -30,9 +30,10 @@ body #container #down {
   border-radius: 3vmax;
   width: 50vw;
   height: 50vh;
+  max-width: 500px;
   border: 1vmax groove rgba(192, 192, 192, 0.8);
   transition: 0.7s;
-  transform: rotateX(-110deg) translateX(-25vw);
+  transform: rotateX(-110deg);
   transform-origin: 50% 100%;
 }
 body #container #up-inner,
@@ -69,9 +70,28 @@ body #container #up-inner {
 body #container #up-inner img {
   height: 80%;
 }
+body #container #up-inner #dictionary-display {
+  display: none;
+  overflow-y: scroll;
+}
+body #container #up-inner #chat-display {
+  display: none;
+  padding: 20px;
+  overflow-y: scroll;
+}
+body #container #up-inner #translate-display {
+  display: none;
+  overflow-y: scroll;
+}
+body #container #up-inner #currency-display {
+  display: none;
+}
 body #container #up-inner #calories-display {
   display: none;
   overflow-y: scroll;
+}
+body #container #up-inner #weather-display {
+  display: none;
 }
 body #container #up-inner #time-display {
   display: none;
@@ -120,7 +140,7 @@ body #container #down menu button {
 body #container #down menu button:hover {
   animation: updown 0.6s linear infinite;
 }
-body #container #down menu #calculator {
+body #container #down menu #translate {
   color: rgb(190, 190, 190);
 }
 body #container #down menu #music {
@@ -176,7 +196,7 @@ body #container #down #generate-joke {
 body #container #down #generate-joke:hover {
   scale: 1.1;
 }
-body #container #down #calories-form {
+body #container #down #calories-form, body #container #down #dictionary-form, body #container #down #translate-form, body #container #down #chat-form, body #container #down #currency-form {
   height: 60%;
   display: none;
   transform: rotateX(0.5turn);
@@ -184,7 +204,7 @@ body #container #down #calories-form {
   justify-content: space-evenly;
   align-items: center;
 }
-body #container #down #calories-form button {
+body #container #down #calories-form button, body #container #down #dictionary-form button, body #container #down #translate-form button, body #container #down #chat-form button, body #container #down #currency-form button {
   cursor: pointer;
   padding: 5px 8px;
   background: none;
@@ -192,10 +212,9 @@ body #container #down #calories-form button {
   border: 2px solid white;
   transition: 0.4s;
 }
-body #container #down #calories-form button:hover {
+body #container #down #calories-form button:hover, body #container #down #dictionary-form button:hover, body #container #down #translate-form button:hover, body #container #down #chat-form button:hover, body #container #down #currency-form button:hover {
   scale: 1.1;
 }
-
 @keyframes bgMove {
   to {
     background-position: top left;

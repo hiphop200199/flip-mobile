@@ -6,6 +6,28 @@
     let backgroundImage = document.querySelector("[alt=some]");
     let offButton = document.getElementById("off");
     let homeButton = document.getElementById("home");
+    let chat = document.getElementById("chat");
+    let chatDisplay=document.getElementById("chat-display");
+    let chatForm =document.getElementById("chat-form");
+    let youSaid = document.getElementById("you-said");
+    let chatSendButton = document.getElementById("to-chat");
+    let weather = document.getElementById("weather");
+    let weatherDisplay = document.getElementById("weather-display");
+    let translate = document.getElementById("translate");
+    let english = document.getElementById("english");
+    let translateForm = document.getElementById("translate-form");
+    let translateDisplay=document.getElementById("translate-display");
+    let translateSendButton = document.getElementById("get-translation");
+    let dictionary = document.getElementById("dictionary");
+    let word = document.getElementById("word");
+    let dictionaryForm = document.getElementById("dictionary-form");
+    let dictionaryDisplay = document.getElementById("dictionary-display");
+    let dictionarySendButton = document.getElementById("search");
+    let currency = document.getElementById("exchange");
+    let currencyForm = document.getElementById("currency-form");
+    let currencyDisplay = document.getElementById("currency-display");
+    let currencyInputs = document.querySelectorAll(".currency-inputs");
+    let currencySendButton = document.getElementById("get-currency");
     let calories = document.getElementById("calories");
     let caloriesDisplay = document.getElementById("calories-display");
     let caloriesForm = document.getElementById("calories-form");
@@ -24,12 +46,17 @@
     let musicIcon = document.querySelector("[alt=music-icon]");
     const bgm = new Audio('angel-piano.mp3');
     const laughing = new Audio("laughing.mp3");
-
+    word.addEventListener("focus",inputMode);
+    word.addEventListener("blur",viewMode);
+    english.addEventListener("focus",inputMode);
+    english.addEventListener("blur",viewMode);
+    youSaid.addEventListener("focus",inputMode);
+    youSaid.addEventListener("blur",viewMode);
      setTimeout(function(){
-        upCover.style.transform = "rotateX(15deg) translateX(-25vw)";
-        upInner.style.transform = "rotateX(15deg) translateX(-25vw)";
+        upCover.style.transform = "rotateX(15deg) ";
+        upInner.style.transform = "rotateX(15deg) ";
         upInner.style.zIndex = "3";
-        container.style.perspectiveOrigin='55% 20%';
+        container.style.perspectiveOrigin='50% 20%';
      },500);
       
 
@@ -37,12 +64,48 @@
   
     offButton.addEventListener("click",function(){
       upInner.style.zIndex = "1";
-      upCover.style.transform = "rotateX(-110deg) translateX(-25vw)";
-      upInner.style.transform = "rotateX(-110deg) translateX(-25vw)";
+      upCover.style.transform = "rotateX(-110deg)";
+      upInner.style.transform = "rotateX(-110deg)";
       container.style.perspectiveOrigin='35% 20%';
       setTimeout(()=> window.open("","_self").close(),1700);
     })
-   
+  chat.addEventListener("click",function(){
+   chatForm.style.display='flex';
+    chatDisplay.style.display='block';
+    menu.style.display='none';
+    backgroundImage.style.display='none';
+    upInner.style.backgroundColor='white';
+  })  
+  translate.addEventListener("click",function(){
+    translateForm.style.display='flex';
+    translateDisplay.style.display='block';
+    menu.style.display='none';
+    backgroundImage.style.display='none';
+    upInner.style.backgroundColor='white';
+  })
+  dictionary.addEventListener("click",function(){
+    dictionaryForm.style.display='flex';
+    dictionaryDisplay.style.display='block';
+    menu.style.display='none';
+    backgroundImage.style.display='none';
+    upInner.style.backgroundColor='white';
+  })  
+
+  weather.addEventListener("click",function(){
+    weatherDisplay.style.display='block';
+    menu.style.opacity='0';
+    backgroundImage.style.display='none';
+    upInner.style.backgroundColor='white';
+    setTimeout(getWeather, 700);
+  })
+  currency.addEventListener("click",function(){
+    currencyForm.style.display='flex';
+    currencyDisplay.style.display='block';
+    menu.style.display='none';
+    backgroundImage.style.display='none';
+    upInner.style.backgroundColor='white';
+  })
+    
   calories.addEventListener("click",function(){
     caloriesForm.style.display='flex';
     caloriesDisplay.style.display='block';
@@ -52,22 +115,10 @@
   })  
 
   for(let i=0;i<caloriesInputs.length;i++){
-    caloriesInputs[i].addEventListener("focus",function(){
-      upCover.style.transform = "rotateX(180deg) translateX(-25vw)";
-      upInner.style.transform = "rotateX(180deg) translateX(-25vw)";
-      down.style.transform = "rotateX(-180deg) translateX(-25vw)";
-      down.style.zIndex='4';
-      container.style.scale='2';
-      container.style.top='-50vh';
-    })
-    caloriesInputs[i].addEventListener("blur",function(){
-      upCover.style.transform = "rotateX(15deg) translateX(-25vw)";
-      upInner.style.transform = "rotateX(15deg) translateX(-25vw)";
-      down.style.transform = "rotateX(-110deg) translateX(-25vw)";
-      down.style.zIndex='0';
-      container.style.scale='1';
-      container.style.top='0';
-    })
+    caloriesInputs[i].addEventListener("focus",inputMode)
+    caloriesInputs[i].addEventListener("blur",viewMode)
+    currencyInputs[i].addEventListener('focus',inputMode)
+    currencyInputs[i].addEventListener('blur',viewMode)
   }
 
   time.addEventListener("click",function(){
@@ -94,7 +145,7 @@
     upInner.style.backgroundColor='white';
    })
 
-
+   currencySendButton.addEventListener("click",sendCurrency);
    caloriesSendButton.addEventListener("click",sendCalories);
    musicPlayButton.addEventListener("click",function(){
       if(bgm.paused){
@@ -106,10 +157,17 @@
       }
    })
   generateJoke.addEventListener("click",searchJoke);
-   homeButton.addEventListener("click",function(){
+  dictionarySendButton.addEventListener("click",search);
+  translateSendButton.addEventListener("click",getTranslate);
+  chatSendButton.addEventListener("click",toChat);
+  homeButton.addEventListener("click",function(){
     musicPlayButton.style.display='none';
      generateJoke.style.display='none';
      caloriesForm.style.display='none';
+     currencyForm.style.display='none';
+     dictionaryForm.style.display='none';
+     translateForm.style.display='none';
+     chatForm.style.display='none';
       bgm.pause();
       menu.style.display='grid';
       menu.style.opacity='1';
@@ -118,10 +176,32 @@
       jokeDisplay.style.display='none';
       timeDisplay.style.display='none';
       caloriesDisplay.style.display='none';
+      currencyDisplay.style.display='none';
+      dictionaryDisplay.style.display='none';
+      weatherDisplay.style.display='none';
+      translateDisplay.style.display='none';
+      chatDisplay.style.display='none';
       backgroundImage.style.display='inline';
    })
 
-  async  function sendCalories(){
+function inputMode(){
+  upCover.style.transform = "rotateX(180deg) translateX(-25vw)";
+  upInner.style.transform = "rotateX(180deg) translateX(-25vw)";
+  down.style.transform = "rotateX(-180deg) translateX(-25vw)";
+  down.style.zIndex='4';
+  container.style.scale='2';
+  container.style.top='-50vh';
+}
+function viewMode(){
+  upCover.style.transform = "rotateX(15deg) translateX(-25vw)";
+  upInner.style.transform = "rotateX(15deg) translateX(-25vw)";
+  down.style.transform = "rotateX(-110deg) translateX(-25vw)";
+  down.style.zIndex='0';
+  container.style.scale='1';
+  container.style.top='0';
+}
+
+async  function sendCalories(){
     let activity = document.getElementById("activity").value;
     let weight = document.getElementById("weight").value;
     let minutes = document.getElementById("minutes").value;
@@ -158,7 +238,7 @@
     } catch (error) {
       console.error(error);
     }
-   }
+}
 
 async function searchJoke(){
   try {
@@ -171,6 +251,162 @@ async function searchJoke(){
   } catch (error) {
     console.error(error);
   }
+}
+
+async function sendCurrency(){
+  let from = document.getElementById("from").value.toUpperCase();
+  let to = document.getElementById("to").value.toUpperCase();
+  let amount = document.getElementById("amount").value;
+  let url = `https://currency-converter-by-api-ninjas.p.rapidapi.com/v1/convertcurrency?have=${from}&want=${to}&amount=${amount}`;
+ 
+ 
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'd7f3e04d0fmsh481d6b03cd7494ep14cfdcjsn8775ef35e2c3',
+		'X-RapidAPI-Host': 'currency-converter-by-api-ninjas.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+	console.log(result);
+  for (const key in result) {
+   let text = document.createElement('p');
+   text.style.fontSize='24px';
+   text.style.marginBlock='20px';
+    text.innerText=key+':'+result[key];
+    currencyDisplay.appendChild(text);
+  }
+} catch (error) {
+	console.error(error);
+}
+}
+
+async function search(){
+  let word = document.getElementById("word").value;
+  const url = `https://dictionary-by-api-ninjas.p.rapidapi.com/v1/dictionary?word=${word}`;
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'd7f3e04d0fmsh481d6b03cd7494ep14cfdcjsn8775ef35e2c3',
+		'X-RapidAPI-Host': 'dictionary-by-api-ninjas.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+	console.log(result);
+  for (const key in result) {
+    let text = document.createElement('p');
+    text.style.fontSize='24px';
+    text.style.marginBlock='20px';
+     text.innerText=key+':'+result[key];
+     dictionaryDisplay.appendChild(text);
+   }
+} catch (error) {
+	console.error(error);
+}
+}
+async function getTranslate(){
+  let text = english.value;
+  const url = 'https://google-translate1.p.rapidapi.com/language/translate/v2';
+const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'Accept-Encoding': 'application/gzip',
+		'X-RapidAPI-Key': 'd7f3e04d0fmsh481d6b03cd7494ep14cfdcjsn8775ef35e2c3',
+		'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+	},
+	body: new URLSearchParams({
+		q: `${text}`,
+		target: 'zh_tw',
+		source: 'en'
+	})
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+	console.log(result);
+  let text = document.createElement("p");
+  text.style.textAlign='center';
+  text.style.fontSize='30px';
+  text.innerText=result.data.translations[0].translatedText+'🙂';
+  translateDisplay.appendChild(text);
+} catch (error) {
+	console.error(error);
+}
+}
+async function getWeather(){
+  let url=`https://api.openweathermap.org/data/2.5/weather?lat=25.034752&lon=121.5987712&appid=06f2d10c18a3520679c2ef565103fc74&units=metric&lang=zh_tw`;
+
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log(data);
+    let iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    weatherDisplay.innerHTML=`
+    <img style="display:block;margin:0 auto;width:200px;height:200px;" src="${iconURL}" alt="${data.weather[0].icon}"/>
+    <p style="margin:0 auto;font-size:20px;text-align:center;">天氣:${data.weather[0].description}</p>
+    <p style="margin:0 auto;font-size:20px;text-align:center;">溫度:${data.main.temp}&#8451;</p>
+    <p style="margin:0 auto;font-size:20px;text-align:center;">體感溫度:${data.main.feels_like}&#8451;</p>
+    <p style="margin:0 auto;font-size:20px;text-align:center;">最高溫度:${data.main.temp_max}&#8451;</p>
+    <p style="margin:0 auto;font-size:20px;text-align:center;">最低溫度:${data.main.temp_min}&#8451;</p>
+    <p style="margin:0 auto;font-size:20px;text-align:center;">濕度:${data.main.humidity}%</p>
+    ` 
+}
+async function toChat(){
+  let text = youSaid.value;
+  let box = document.createElement("p");
+  box.style.textAlign='end';
+  box.style.marginBlock='50px';
+  box.style.fontSize='35px';
+  let thinking = document.createElement("p");
+  thinking.style.textAlign='center';
+  thinking.style.animation='updown 0.6s linear infinite';
+  thinking.style.marginBlock='50px';
+  thinking.style.fontSize='35px';
+  thinking.innerText='hmm...';
+  box.innerText='Eric:'+text;
+  chatDisplay.appendChild(box);
+  chatDisplay.appendChild(thinking);
+  const url = 'https://robomatic-ai.p.rapidapi.com/api';
+const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'X-RapidAPI-Key': 'd7f3e04d0fmsh481d6b03cd7494ep14cfdcjsn8775ef35e2c3',
+		'X-RapidAPI-Host': 'robomatic-ai.p.rapidapi.com'
+	},
+	body: new URLSearchParams({
+		in: `${text}`,
+		op: 'in',
+		cbot: '1',
+		SessionID: 'RapidAPI1',
+		cbid: '1',
+		key: 'RHMN5hnQ4wTYZBGCF3dfxzypt68rVP',
+		ChatSource: 'RapidAPI',
+		duration: '1'
+	})
+};
+
+try {
+	const response = await fetch(url, options);
+  if(response)chatDisplay.removeChild(thinking);
+	const result = await response.json();
+	console.log(result);
+  let answer = document.createElement("p");
+  answer.style.textAlign='start';
+  answer.style.marginBlock='50px';
+  answer.style.fontSize='35px';
+  answer.innerText='Bot:'+result.out;
+  chatDisplay.appendChild(answer);
+} catch (error) {
+	console.error(error);
+}
 }
 
 const url = 'https://jokes-by-api-ninjas.p.rapidapi.com/v1/jokes';
