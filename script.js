@@ -185,17 +185,17 @@
    })
 
 function inputMode(){
-  upCover.style.transform = "rotateX(180deg) translateX(-25vw)";
-  upInner.style.transform = "rotateX(180deg) translateX(-25vw)";
-  down.style.transform = "rotateX(-180deg) translateX(-25vw)";
+  upCover.style.transform = "rotateX(180deg)";
+  upInner.style.transform = "rotateX(180deg)";
+  down.style.transform = "rotateX(-180deg)";
   down.style.zIndex='4';
   container.style.scale='2';
   container.style.top='-50vh';
 }
 function viewMode(){
-  upCover.style.transform = "rotateX(15deg) translateX(-25vw)";
-  upInner.style.transform = "rotateX(15deg) translateX(-25vw)";
-  down.style.transform = "rotateX(-110deg) translateX(-25vw)";
+  upCover.style.transform = "rotateX(15deg)";
+  upInner.style.transform = "rotateX(15deg) ";
+  down.style.transform = "rotateX(-110deg) ";
   down.style.zIndex='0';
   container.style.scale='1';
   container.style.top='0';
